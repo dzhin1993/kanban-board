@@ -1,0 +1,18 @@
+.App {
+    text-align: center;
+}
+
+body {
+    margin-top: 20px;
+    background: #fafafa
+}
+
+.card {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 .25rem .5rem rgba(0, 0, 0, .025)
+}
+
+.card-title {
+    font-weight: 500;
+    margin-top: .1rem
+}
