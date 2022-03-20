@@ -1,5 +1,6 @@
 const db = require("../models");
 const TodoItem = db.todoItems;
+const reducerUtils = require("../utils/ReducerUtils")
 
 exports.create = (req, res) => {
   if (!req.body.title) {
@@ -54,7 +55,7 @@ exports.findAll = (req, res) => {
   
   TodoItem.find(condition)
     .then(data => {
-      res.send(data);
+      res.send(reducerUtils(data, "status"));
     })
     .catch(err => {
       res.status(500).send({
