@@ -23,6 +23,7 @@ export class KanbanBoardContainer extends Component {
         this.setState(() => ({
             showModal: true,
         }))
+        console.log("cli");
     };
 
     closeModal = () => {

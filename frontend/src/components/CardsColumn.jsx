@@ -12,7 +12,7 @@ export const CardsColumn = ({cards, columnType, showModal}) => {
                         <h6 className="card-subtitle text-muted">Upcoming new tasks</h6>
                     </div>
                     <div className="card-body p-3">
-                        {cards && cards.map(card => <CardItem key={card.id} card={card}/>)}
+                        {cards && cards.map(card => <CardItem key={card.id} card={card} showModal={showModal}/>)}
                         <a href="#" className="btn btn-primary btn-block" onClick={showModal}>Add new</a>
                     </div>
                 </div>
