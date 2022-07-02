@@ -1,27 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 
-export const AddOrUpdateModal = ({show, closeModal}) => {
-
-    const [card, updateCard] = useState({
-        title: "",
-        description: ""
+export const ModalForm = ({card, show, closeModal}) => {
+    const [cardValues, updateCard] = useState({
+        title: card.title,
+        description: card.description
     });
 
+    const saveChanges = () => {
+        console.log(cardValues);
+    }
 
     const changeTitle = e => {
-        updateCard({...card, title: e.target.value});
+        updateCard({...cardValues, title: e.target.value});
     }
 
     const changeDescription = e => {
-        updateCard({...card, description: e.target.value});
-    }
-
-    const saveChanges = () => {
-        console.log(card);
+        updateCard({...cardValues, description: e.target.value});
     }
 
     return (
@@ -33,11 +31,11 @@ export const AddOrUpdateModal = ({show, closeModal}) => {
                 <Form>
                     <Form.Group className="mb-3" controlId="formTitle">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" placeholder="Enter title" value={card.title} onChange={changeTitle} />
+                        <Form.Control type="text" placeholder="Enter title" value={cardValues.title} onChange={changeTitle} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formDescription">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control type="text" placeholder="Enter description" value={card.description} onChange={changeDescription} />
+                        <Form.Control type="text" placeholder="Enter description" value={cardValues.description} onChange={changeDescription} />
                     </Form.Group>
                 </Form>
             </Modal.Body>
