@@ -8,14 +8,14 @@ export class KanbanBoardContainer extends Component {
 
     state = {
         showModal: false,
-        items: [],
+        cards: [],
     }
 
     componentDidMount() {
         axios.get(`http://localhost:8080/api/items`)
             .then(res => {
-                const items = res.data;
-                this.setState({ items });
+                const cards = res.data;
+                this.setState({ cards });
             })
     }
 
@@ -37,7 +37,7 @@ export class KanbanBoardContainer extends Component {
                 <AddOrUpdateModal show={this.state.showModal} closeModal={this.closeModal} />
                 <h1 className="h5 mb-3">Kanban Board</h1>
                 <div className="row">
-                    <CardsColumn items={this.state.items["CREATED"]} columnType="Upcoming" showModal={this.openModal} />
+                    <CardsColumn cards={this.state.cards["CREATED"]} columnType="Upcoming" showModal={this.openModal} />
                     <CardsColumn columnType="In Progress" />
                     <CardsColumn columnType="On hold" />
                     <CardsColumn columnType="Completed" />

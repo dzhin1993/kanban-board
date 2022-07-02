@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const CardItem = ({item}) => {
-    const {title, description} = item;
+export const CardItem = ({card}) => {
+    const {title, description} = card;
     return (
         <div className="card mb-3 bg-light">
             <div className="card-body p-3">
