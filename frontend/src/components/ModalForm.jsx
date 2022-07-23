@@ -18,6 +18,18 @@ export const ModalForm = ({card, show, closeModal, saveChanges}) => {
         updateValues({...cardValues, description: e.target.value});
     }
 
+    const clear = () => {
+      updateValues({
+          title: "",
+          description: ""
+      })
+    }
+
+    const handleClick = () => {
+        saveChanges(cardValues)
+        clear();
+    };
+
     return (
         <Modal show={show} onHide={closeModal}>
             <Modal.Header closeButton>
@@ -39,7 +51,7 @@ export const ModalForm = ({card, show, closeModal, saveChanges}) => {
                 <Button variant="secondary" onClick={closeModal}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={() => saveChanges(cardValues)}>
+                <Button variant="primary" onClick={handleClick}>
                     Save Changes
                 </Button>
             </Modal.Footer>
