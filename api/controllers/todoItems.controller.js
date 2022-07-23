@@ -49,6 +49,28 @@ exports.update = (req, res) => {
     });
 };
 
+exports.updateStatus = (req, res) => {
+  const id = req.params.id;
+  const status = req.params.status;
+
+  TodoItem.findByIdAndUpdate(id, {status: status})
+      .then(data => {
+        if (data) {
+          res.send({message: "TodoItem was updated successfully."});
+        } else {
+          res.status(404).send({
+            message: `Cannot update TodoItem with id=${id}.`
+          });
+        }
+      })
+      .catch(() => {
+        res.status(500).send({
+          message: "Error updating TodoItem with id=" + id
+        });
+      });
+
+}
+
 exports.findAll = (req, res) => {
   const title = req.query.title;
   const condition = title ? {title: {$regex: new RegExp(title), $options: "i"}} : {};

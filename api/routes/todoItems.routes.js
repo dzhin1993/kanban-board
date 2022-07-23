@@ -6,6 +6,8 @@ module.exports = app => {
   router.post("/", tutorials.create);
   
   router.put("/:id", tutorials.update);
+
+  router.put("/:id/status/:status", tutorials.updateStatus);
   
   router.delete("/:id", tutorials.delete);
   

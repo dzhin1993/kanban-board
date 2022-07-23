@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { useDrag } from 'react-dnd'
 
 import {UpdateForm} from "./UpdateForm";
 
@@ -16,11 +17,25 @@ export const CardItem = ({card, updateCard, removeCard}) => {
         removeCard(card.id);
     }
 
+    const [{ didDrop }, dragRef] = useDrag({
+        type: "cardItem",
+        item: card,
+        collect: (monitor) => ({
+            didDrop: monitor.didDrop()
+        }),
+        end: (card) => {
+            if (didDrop) {
+                console.log("didDrop");
+                removeCard(card.id)
+            }
+        }
+    })
+
     const {title, description} = card;
     return (
         <>
             <UpdateForm card={card} show={showModal} closeModal={closeModal} updateCard={updateCard}/>
-            <div className="container">
+            <div className="container" ref={dragRef}>
                 <div className="card mb-3 bg-light">
                     <div className="card-header">
                        <div className="row">
