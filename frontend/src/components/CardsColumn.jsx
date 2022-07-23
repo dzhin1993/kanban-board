@@ -27,6 +27,12 @@ export const CardsColumn = ({initialState, columnType}) => {
         setCard(newState);
     }
 
+    const removeCard = (id) => {
+      setCard(current => {
+         return current.filter(card => card.id !== id);
+      })
+    }
+
     return (
         <>
             <AddForm  show={showModal} closeModal={closeModal} addCard={addCard}/>
@@ -37,7 +43,7 @@ export const CardsColumn = ({initialState, columnType}) => {
                         <h6 className="card-subtitle text-muted">Upcoming new tasks</h6>
                     </div>
                     <div className="card-body p-3">
-                        {cards && cards.map(card => <CardItem key={card.id} card={card} updateCard={updateCard}/>)}
+                        {cards && cards.map(card => <CardItem key={card.id} card={card} updateCard={updateCard} removeCard={removeCard}/>)}
                         <a href="#" className="btn btn-primary btn-block" onClick={openModal}>Add new</a>
                     </div>
                 </div>
