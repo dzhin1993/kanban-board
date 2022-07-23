@@ -12,8 +12,11 @@ export const ModalForm = ({card, show, closeModal, addCard, updateCard}) => {
     });
 
     const saveChanges = () => {
-        const created = {title: cardValues.title, description: cardValues.description};
+        let created = {title: cardValues.title, description: cardValues.description};
         axios.post(`http://localhost:8080/api/items`, created)
+            .then(res => {
+              created.id = res.data.id;
+            })
             .catch(err => console.log(err));
         addCard(created);
         closeModal();

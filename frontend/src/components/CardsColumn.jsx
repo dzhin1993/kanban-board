@@ -16,6 +16,9 @@ export const CardsColumn = ({initialState, columnType}) => {
         }
     }, [initialState])
 
+    const addCard = (card) => {
+        setCard(current => [...current, card]);
+    }
 
     const updateCard = (card) => {
         const newState = cards.map(item => {
@@ -26,7 +29,7 @@ export const CardsColumn = ({initialState, columnType}) => {
 
     return (
         <>
-            <ModalForm show={showModal} closeModal={closeModal}/>
+            <ModalForm show={showModal} closeModal={closeModal} addCard={addCard}/>
             <div className="col-12 col-lg-6 col-xl-3">
                 <div className="card card-border-primary">
                     <div className="card-header">
