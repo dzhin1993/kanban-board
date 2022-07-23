@@ -1,34 +1,15 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from "react-bootstrap/Form";
 
-export const ModalForm = ({card, show, closeModal, addCard, updateCard}) => {
+export const ModalForm = ({card, show, closeModal, saveChanges}) => {
     const [cardValues, updateValues] = useState({
         title: card ? card.title : "",
         description: card ? card.description: "",
     });
 
-    const saveChanges = () => {
-        let created = {title: cardValues.title, description: cardValues.description};
-        axios.post(`http://localhost:8080/api/items`, created)
-            .then(res => {
-              created.id = res.data.id;
-            })
-            .catch(err => console.log(err));
-        addCard(created);
-        closeModal();
-    }
-
-    const updateChanges = () => {
-        const updated = {id: card.id, title: cardValues.title, description: cardValues.description};
-        axios.put(`http://localhost:8080/api/items/${card.id}`, updated)
-            .catch(err => console.log(err));
-        updateCard(updated);
-        closeModal();
-    }
 
     const changeTitle = e => {
         updateValues({...cardValues, title: e.target.value});
@@ -59,7 +40,7 @@ export const ModalForm = ({card, show, closeModal, addCard, updateCard}) => {
                 <Button variant="secondary" onClick={closeModal}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={card ? updateChanges : saveChanges}>
+                <Button variant="primary" onClick={() => saveChanges(cardValues)}>
                     Save Changes
                 </Button>
             </Modal.Footer>

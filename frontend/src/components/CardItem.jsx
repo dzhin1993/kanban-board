@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ModalForm} from "./ModalForm";
+import {UpdateForm} from "./UpdateForm";
 
 export const CardItem = ({card, updateCard}) => {
     const [showModal, setShowModal] = useState(false);
@@ -9,7 +9,7 @@ export const CardItem = ({card, updateCard}) => {
     const {title, description} = card;
     return (
         <>
-            <ModalForm card={card} show={showModal} closeModal={closeModal} updateCard={updateCard}/>
+            <UpdateForm card={card} show={showModal} closeModal={closeModal} updateCard={updateCard}/>
             <div className="card mb-3 bg-light">
                 <div className="card-body p-3">
                     <h5 className="card-title text-muted">{title}</h5>

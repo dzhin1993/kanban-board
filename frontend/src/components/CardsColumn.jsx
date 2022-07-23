@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 import {CardItem} from "./CardItem";
-import {ModalForm} from "./ModalForm";
+import {AddForm} from "./AddForm";
 
 export const CardsColumn = ({initialState, columnType}) => {
     const [showModal, setShowModal] = useState(false);
@@ -29,7 +29,7 @@ export const CardsColumn = ({initialState, columnType}) => {
 
     return (
         <>
-            <ModalForm show={showModal} closeModal={closeModal} addCard={addCard}/>
+            <AddForm  show={showModal} closeModal={closeModal} addCard={addCard}/>
             <div className="col-12 col-lg-6 col-xl-3">
                 <div className="card card-border-primary">
                     <div className="card-header">
