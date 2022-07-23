@@ -18,6 +18,13 @@ export const ModalForm = ({card, show, closeModal}) => {
             .catch(err => console.log(err));
     }
 
+    const updateChanges = () => {
+        console.log(cardValues);
+        const updated = {title: cardValues.title, description: cardValues.description};
+        axios.put(`http://localhost:8080/api/items/${card.id}`, updated)
+            .catch(err => console.log(err));
+    }
+
     const changeTitle = e => {
         updateCard({...cardValues, title: e.target.value});
     }
@@ -47,7 +54,7 @@ export const ModalForm = ({card, show, closeModal}) => {
                 <Button variant="secondary" onClick={closeModal}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={saveChanges}>
+                <Button variant="primary" onClick={card ? updateChanges : saveChanges}>
                     Save Changes
                 </Button>
             </Modal.Footer>
