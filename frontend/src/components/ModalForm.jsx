@@ -6,10 +6,9 @@ import Form from "react-bootstrap/Form";
 
 export const ModalForm = ({card, show, closeModal, saveChanges}) => {
     const [cardValues, updateValues] = useState({
-        title: card ? card.title : "",
-        description: card ? card.description: "",
+        title: card.title,
+        description: card.description,
     });
-
 
     const changeTitle = e => {
         updateValues({...cardValues, title: e.target.value});

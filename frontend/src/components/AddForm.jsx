@@ -16,7 +16,9 @@ export const AddForm = ({show, closeModal, addCard}) => {
         closeModal();
     }
 
+    const emptyCard = {title: "", description: ""}
+
     return (
-        <ModalForm show={show} closeModal={closeModal} saveChanges={saveChanges} />
+        <ModalForm card={emptyCard} show={show} closeModal={closeModal} saveChanges={saveChanges} />
     );
 }
