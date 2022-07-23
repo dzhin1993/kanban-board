@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -12,6 +13,9 @@ export const ModalForm = ({card, show, closeModal}) => {
 
     const saveChanges = () => {
         console.log(cardValues);
+        const created = {title: cardValues.title, description: cardValues.description};
+        axios.post(`http://localhost:8080/api/items`, created)
+            .catch(err => console.log(err));
     }
 
     const changeTitle = e => {

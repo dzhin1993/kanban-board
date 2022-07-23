@@ -4,7 +4,7 @@ module.exports = mongoose => {
       description: String,
       status: {
           type: String,
-          enum : ['CREATED','UPDATED'],
+          enum : ['CREATED','IN_PROGRESS', 'ON_HOLD', 'COMPLETED'],
           default: 'CREATED'
       }
     },
