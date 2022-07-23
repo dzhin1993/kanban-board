@@ -3,10 +3,11 @@ import axios from 'axios';
 
 import {ModalForm} from './ModalForm';
 
-export const AddForm = ({show, closeModal, addCard}) => {
+export const AddForm = ({show, closeModal, addCard, cardStatus}) => {
+
 
     const saveChanges = ({title, description}) => {
-        let created = {title, description};
+        let created = {title, description, status: cardStatus};
         axios.post(`http://localhost:8080/api/items`, created)
             .then(res => {
                 created.id = res.data.id;

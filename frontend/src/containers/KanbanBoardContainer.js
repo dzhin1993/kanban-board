@@ -22,10 +22,10 @@ export class KanbanBoardContainer extends Component {
             <main className={"content"}>
                 <h1 className="h5 mb-3">Kanban Board</h1>
                 <div className="row">
-                    <CardsColumn initialState={this.state.cards["CREATED"]} columnType="Upcoming" />
-                    <CardsColumn initialState={this.state.cards["IN_PROGRESS"]} columnType="In Progress" />
-                    <CardsColumn initialState={this.state.cards["ON_HOLD"]} columnType="On hold" />
-                    <CardsColumn initialState={this.state.cards["COMPLETED"]} columnType="Completed" />
+                    <CardsColumn initialState={this.state.cards["UPCOMING"]} columnType="UPCOMING" />
+                    <CardsColumn initialState={this.state.cards["IN_PROGRESS"]} columnType="IN_PROGRESS" />
+                    <CardsColumn initialState={this.state.cards["ON_HOLD"]} columnType="ON_HOLD" />
+                    <CardsColumn initialState={this.state.cards["COMPLETED"]} columnType="COMPLETED" />
                 </div>
             </main>
         )
