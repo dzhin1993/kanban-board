@@ -5,32 +5,34 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from "react-bootstrap/Form";
 
-export const ModalForm = ({card, show, closeModal}) => {
-    const [cardValues, updateCard] = useState({
-        title: card.title,
-        description: card.description
+export const ModalForm = ({card, show, closeModal, addCard, updateCard}) => {
+    const [cardValues, updateValues] = useState({
+        title: card ? card.title : "",
+        description: card ? card.description: "",
     });
 
     const saveChanges = () => {
-        console.log(cardValues);
         const created = {title: cardValues.title, description: cardValues.description};
         axios.post(`http://localhost:8080/api/items`, created)
             .catch(err => console.log(err));
+        addCard(created);
+        closeModal();
     }
 
     const updateChanges = () => {
-        console.log(cardValues);
-        const updated = {title: cardValues.title, description: cardValues.description};
+        const updated = {id: card.id, title: cardValues.title, description: cardValues.description};
         axios.put(`http://localhost:8080/api/items/${card.id}`, updated)
             .catch(err => console.log(err));
+        updateCard(updated);
+        closeModal();
     }
 
     const changeTitle = e => {
-        updateCard({...cardValues, title: e.target.value});
+        updateValues({...cardValues, title: e.target.value});
     }
 
     const changeDescription = e => {
-        updateCard({...cardValues, description: e.target.value});
+        updateValues({...cardValues, description: e.target.value});
     }
 
     return (
