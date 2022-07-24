@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -10,6 +10,10 @@ export const ModalForm = ({card, show, closeModal, saveChanges}) => {
         description: card.description,
     });
 
+    useEffect(() => {
+        updateValues({title: card.title, description: card.description})
+    }, [card])
+
     const changeTitle = e => {
         updateValues({...cardValues, title: e.target.value});
     }
@@ -18,17 +22,7 @@ export const ModalForm = ({card, show, closeModal, saveChanges}) => {
         updateValues({...cardValues, description: e.target.value});
     }
 
-    const clear = () => {
-      updateValues({
-          title: "",
-          description: ""
-      })
-    }
-
-    const handleClick = () => {
-        saveChanges(cardValues)
-        clear();
-    };
+    const handleClick = () => saveChanges(cardValues);
 
     return (
         <Modal show={show} onHide={closeModal}>
