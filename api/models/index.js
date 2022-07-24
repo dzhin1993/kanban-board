@@ -1,11 +1,12 @@
-const dbConfig = require("../config/db.config.js");
+import mongoose from 'mongoose'
+import URL from '../config/DbConfig.js'
+import Schema from "./Model.js";
 
-const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
 const db = {};
 db.mongoose = mongoose;
-db.url = dbConfig.url;
-db.todoItems = require("./kanban.model.js")(mongoose);
+db.url = URL;
+db.todoItems = Schema;
 
-module.exports = db;
+export default db;
