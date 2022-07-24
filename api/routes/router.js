@@ -7,7 +7,7 @@ router.post("/", Controller.create);
 
 router.put("/:id", Controller.update);
 
-router.put("/:id/status/:status", Controller.updateStatus);
+router.put("/:id/status/:status", Controller.changeStatus);
 
 router.delete("/:id", Controller.delete);
 
