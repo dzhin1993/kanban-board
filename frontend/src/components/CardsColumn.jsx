@@ -5,7 +5,7 @@ import {useDrop} from 'react-dnd';
 import {CardItem} from "./CardItem";
 import {AddForm} from "./AddForm";
 import {CardStatus} from "../models/CardStatus";
-import axios from "axios";
+import ApiService from "../services/ApiService";
 
 export const CardsColumn = ({initialState, columnType}) => {
     const [showModal, setShowModal] = useState(false);
@@ -15,9 +15,9 @@ export const CardsColumn = ({initialState, columnType}) => {
     const [cards, setCard] = useState([]);
 
     const changeStatus = (id) => {
-        axios.put(`http://localhost:8080/api/items/${id}/status/${columnType}`)
+        ApiService.updateStatus(id, columnType)
             .catch(err => {
-                console.log(err);
+                console.error(err);
             })
     }
 
