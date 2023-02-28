@@ -32,7 +32,7 @@ export const CardsColumn = ({initialState, columnType}) => {
             changeStatus(item.id);
         },
         collect: (monitor) => ({
-            isOver: monitor.isOver()
+            isOver: monitor.didDrop()
         })
     })
 
