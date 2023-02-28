@@ -11,9 +11,9 @@ export const AddForm = ({show, closeModal, addCard, cardStatus}) => {
         axios.post(`http://localhost:8080/api/items`, created)
             .then(res => {
                 created.id = res.data.id;
+                addCard(created);
             })
             .catch(err => console.log(err));
-        addCard(created);
         closeModal();
     }
 
