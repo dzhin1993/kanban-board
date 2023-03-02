@@ -26,7 +26,7 @@ class Controller {
     changeStatus = (req, res) => {
         const {id, status} = req.params;
         Service.changeStatus(id, status)
-            .then(() => res.status(200).send())
+            .then((data) => res.status(200).send(data))
             .catch(err => {
                 res.status(err.statusCode || 500).send(err.message);
             });

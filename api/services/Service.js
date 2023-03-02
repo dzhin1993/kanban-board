@@ -27,11 +27,12 @@ class Service {
     }
 
     async changeStatus(id, status) {
-        return TodoItem.findByIdAndUpdate(id, {status})
+        return TodoItem.findByIdAndUpdate(id, {status}, {new: true})
             .then(data => {
                 if (!data) {
                     throw new HttpError(`Not found with id=${id}.`, 404);
                 }
+                return data;
             });
     }
 
