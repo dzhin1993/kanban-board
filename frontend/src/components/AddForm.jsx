@@ -1,17 +1,15 @@
 import React from 'react';
 
 import {ModalForm} from './ModalForm';
-import ApiService from "../services/ApiService";
+import {useDispatch} from "react-redux";
+import {createCard} from "../actions/cardsActions";
 
-export const AddForm = ({show, closeModal, addCard, cardStatus}) => {
+export const AddForm = ({show, closeModal, cardStatus}) => {
+    const dispatch = useDispatch();
 
     const saveChanges = ({title, description}) => {
         let created = {title, description, status: cardStatus};
-        ApiService.create(created)
-            .then(res => {
-                created.id = res.data.id;
-                addCard(created);
-            });
+        dispatch(createCard(created))
         closeModal();
     }
 

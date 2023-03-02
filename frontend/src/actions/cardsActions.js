@@ -1,4 +1,4 @@
-import {removeCard, setCardsSuccess, setStatus} from "../feutures/cardItemSlice";
+import {create, removeCard, setCardsSuccess, setStatus, update} from "../feutures/cardItemSlice";
 import ApiService from "../services/ApiService";
 
 export const fetchCards = () => async dispatch => {
@@ -6,6 +6,30 @@ export const fetchCards = () => async dispatch => {
         ApiService.getAll()
             .then((response) =>
                 dispatch(setCardsSuccess(response.data))
+            );
+    } catch (e) {
+        return console.error(e.message);
+    }
+}
+
+export const updateCard = (updated) => async dispatch => {
+    try {
+        ApiService.update(updated)
+            .then((response) =>
+                dispatch(update(response.data))
+            );
+    } catch (e) {
+        return console.error(e.message);
+    }
+}
+
+export const createCard = (created) => async dispatch => {
+    try {
+        ApiService.create(created)
+            .then((response) => {
+                    created.id = response.data.id;
+                    dispatch(create(response.data))
+                }
             );
     } catch (e) {
         return console.error(e.message);

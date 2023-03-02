@@ -16,7 +16,7 @@ class Service {
         if (!todoItem) {
             throw new HttpError(`Data to update can not be empty`, 400);
         }
-        return TodoItem.findByIdAndUpdate(id, todoItem, {useFindAndModify: false})
+        return TodoItem.findByIdAndUpdate(id, todoItem, {useFindAndModify: false, new: true})
             .then(data => {
                 if (data) {
                     return data;

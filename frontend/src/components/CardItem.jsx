@@ -5,7 +5,7 @@ import {UpdateForm} from "./UpdateForm";
 import {useDispatch} from "react-redux";
 import {deleteCard, removeFromColumn} from "../actions/cardsActions";
 
-export const CardItem = ({card, updateCard}) => {
+export const CardItem = ({card}) => {
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
@@ -27,7 +27,7 @@ export const CardItem = ({card, updateCard}) => {
     const {title, description} = card;
     return (
         <>
-            <UpdateForm card={card} show={showModal} closeModal={closeModal} updateCard={updateCard}/>
+            <UpdateForm card={card} show={showModal} closeModal={closeModal} />
             <div className="container" ref={dragRef}>
                 <div className="card mb-3 bg-light">
                     <div className="card-header">

@@ -9,6 +9,20 @@ export const cardItemsSlice = createSlice({
         setCardsSuccess: (state, action) => {
             state.cards = action.payload;
         },
+        create: (state, action) => {
+            const {cards} = state;
+            const {status} = action.payload;
+            cards.hasOwnProperty(status)
+                ? cards[status].push(action.payload)
+                : cards[status] = [action.payload]
+        },
+        update: (state, action) => {
+            const {cards} = state;
+            const {id, status} = action.payload;
+            cards[status] = cards[status].map(card =>
+                card.id === id ? action.payload : card
+            );
+        },
         removeCard: (state, action) => {
             const {cards} = state;
             const {id, status} = action.payload;
@@ -25,6 +39,12 @@ export const cardItemsSlice = createSlice({
     },
 });
 
-export const { setCardsSuccess, removeCard, setStatus } = cardItemsSlice.actions
+export const {
+    setCardsSuccess,
+    create,
+    update,
+    removeCard,
+    setStatus
+} = cardItemsSlice.actions
 
 export default cardItemsSlice.reducer
