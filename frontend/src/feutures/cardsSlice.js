@@ -6,7 +6,7 @@ export const cardItemsSlice = createSlice({
         cards: {}
     },
     reducers: {
-        setCardsSuccess: (state, action) => {
+        setSuccess: (state, action) => {
             state.cards = action.payload;
         },
         create: (state, action) => {
@@ -23,7 +23,7 @@ export const cardItemsSlice = createSlice({
                 card.id === id ? action.payload : card
             );
         },
-        removeCard: (state, action) => {
+        remove: (state, action) => {
             const {cards} = state;
             const {id, status} = action.payload;
             cards[status] = cards[status].filter(card => card.id !== id);
@@ -40,10 +40,10 @@ export const cardItemsSlice = createSlice({
 });
 
 export const {
-    setCardsSuccess,
+    setSuccess,
     create,
     update,
-    removeCard,
+    remove,
     setStatus
 } = cardItemsSlice.actions
 

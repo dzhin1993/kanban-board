@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 
-import cardsReducer from "./feutures/cardItemSlice";
+import cardsReducer from "./feutures/cardsSlice";
 
 
 export const store = configureStore({
