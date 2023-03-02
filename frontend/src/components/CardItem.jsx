@@ -2,20 +2,14 @@ import React, {useState} from 'react';
 import {useDrag} from 'react-dnd'
 
 import {UpdateForm} from "./UpdateForm";
-import ApiService from "../services/ApiService";
 import {useDispatch} from "react-redux";
-import {removeFromColumn} from "../actions/cardsActions";
+import {deleteCard, removeFromColumn} from "../actions/cardsActions";
 
-export const CardItem = ({card, updateCard, removeCard}) => {
+export const CardItem = ({card, updateCard}) => {
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
-
-    const handleRemove = () => {
-        ApiService.remove(card.id)
-            .then(() => removeCard(card.id));
-    }
 
     const [{didDrop}, dragRef] = useDrag({
         type: "cardItem",
@@ -43,7 +37,9 @@ export const CardItem = ({card, updateCard, removeCard}) => {
                                 <h5 className="card-title text-muted">{title}</h5>
                             </div>
                             <div className="col-sm">
-                                <button type="button" className="btn-close" aria-label="Close" onClick={handleRemove}/>
+                                <button type="button" className="btn-close" aria-label="Close" onClick={
+                                    () => dispatch(deleteCard(card.id, card.status))
+                                }/>
                             </div>
                         </div>
                     </div>

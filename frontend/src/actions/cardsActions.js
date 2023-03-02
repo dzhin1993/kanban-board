@@ -6,18 +6,27 @@ export const fetchCards = () => async dispatch => {
         ApiService.getAll()
             .then((response) =>
                 dispatch(setCardsSuccess(response.data))
-            )
+            );
     } catch (e) {
         return console.error(e.message);
     }
 }
 
-export const updateStatus = (id, columnType) => async dispatch => {
+export const updateStatus = (id, status) => async dispatch => {
     try {
-        ApiService.updateStatus(id, columnType)
+        ApiService.updateStatus(id, status)
             .then((response) =>
                 dispatch(setStatus(response.data))
-            )
+            );
+    } catch (e) {
+        return console.error(e.message);
+    }
+}
+
+export const deleteCard = (id, status) => async dispatch => {
+    try {
+        ApiService.remove(id)
+            .then(() => dispatch(removeCard({id, status})));
     } catch (e) {
         return console.error(e.message);
     }
