@@ -1,18 +1,23 @@
 import React, {useState, useEffect} from 'react';
-
 import {useDrop} from 'react-dnd';
+import {useDispatch, useSelector} from 'react-redux'
 
 import {CardItem} from "./CardItem";
 import {AddForm} from "./AddForm";
 import {CardStatus} from "../models/CardStatus";
 import ApiService from "../services/ApiService";
+import {updateStatus} from "../actions/cardsActions";
 
 export const CardsColumn = ({initialState, columnType}) => {
+    const dispatch = useDispatch();
+    const cards = useSelector(state => {
+        const {cards} = state.cards
+        return cards[columnType];
+    });
+
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
-
-    const [cards, setCard] = useState([]);
 
     const changeStatus = (id) => {
         ApiService.updateStatus(id, columnType)
@@ -25,11 +30,7 @@ export const CardsColumn = ({initialState, columnType}) => {
         accept: "cardItem",
         canDrop: (item => item.status !== columnType),
         drop: (item) => {
-            setCard((cards) => !cards.find(obj => obj.id === item.id)
-                ? [...cards, {...item, status: columnType}]
-                : cards
-            )
-            changeStatus(item.id);
+            dispatch(updateStatus(item.id, columnType));
         },
         collect: (monitor) => ({
             isOver: monitor.didDrop()
@@ -37,26 +38,26 @@ export const CardsColumn = ({initialState, columnType}) => {
     })
 
     useEffect(() => {
-        if (initialState) {
+       /* if (initialState) {
             setCard(initialState);
-        }
+        }*/
     }, [initialState])
 
     const addCard = (card) => {
-        setCard(current => [...current, card]);
+      /*  setCard(current => [...current, card]);*/
     }
 
     const updateCard = (card) => {
-        const newState = cards.map(item => {
+       /* const newState = cards.map(item => {
             return item.id === card.id ? card : item;
         });
-        setCard(newState);
+        setCard(newState);*/
     }
 
     const removeCard = (id) => {
-        setCard(current => {
+       /* setCard(current => {
             return current.filter(card => card.id !== id);
-        })
+        })*/
     }
 
     return (

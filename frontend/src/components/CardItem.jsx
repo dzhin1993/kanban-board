@@ -3,8 +3,11 @@ import {useDrag} from 'react-dnd'
 
 import {UpdateForm} from "./UpdateForm";
 import ApiService from "../services/ApiService";
+import {useDispatch} from "react-redux";
+import {removeFromColumn} from "../actions/cardsActions";
 
 export const CardItem = ({card, updateCard, removeCard}) => {
+    const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
@@ -22,7 +25,7 @@ export const CardItem = ({card, updateCard, removeCard}) => {
         }),
         end: (card) => {
             if (didDrop) {
-                removeCard(card.id)
+                dispatch(removeFromColumn(card.id, card.status))
             }
         }
     })

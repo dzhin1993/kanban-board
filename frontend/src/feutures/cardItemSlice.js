@@ -6,12 +6,25 @@ export const cardItemsSlice = createSlice({
         cards: {}
     },
     reducers: {
-        cardsSuccess: (state, action) => {
+        setCardsSuccess: (state, action) => {
             state.cards = action.payload;
         },
+        removeCard: (state, action) => {
+            const {cards} = state;
+            const {id, status} = action.payload;
+            cards[status] = cards[status].filter(card => card.id !== id);
+        },
+        setStatus: (state, action) => {
+            const {cards} = state;
+            const {status} = action.payload;
+            cards.hasOwnProperty(status)
+                ? cards[status].push(action.payload)
+                : cards[status] = [action.payload]
+        }
+
     },
 });
 
-export const { cardsSuccess } = cardItemsSlice.actions
+export const { setCardsSuccess, removeCard, setStatus } = cardItemsSlice.actions
 
 export default cardItemsSlice.reducer

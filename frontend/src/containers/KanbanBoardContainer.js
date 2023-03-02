@@ -8,7 +8,7 @@ import {fetchCards} from "../actions/cardsActions";
 
 export const KanbanBoardContainer = () => {
     const dispatch = useDispatch();
-    const {cards} = useSelector(state => state.cards);
+    const cards = useSelector(state => state.cards);
 
     useEffect(() => {
         dispatch(fetchCards());
