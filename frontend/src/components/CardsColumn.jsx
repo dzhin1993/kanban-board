@@ -8,7 +8,7 @@ import {CardStatus} from "../models/CardStatus";
 import ApiService from "../services/ApiService";
 import {updateStatus} from "../actions/cardsActions";
 
-export const CardsColumn = ({initialState, columnType}) => {
+export const CardsColumn = ({columnType}) => {
     const dispatch = useDispatch();
     const cards = useSelector(state => {
         const {cards} = state.cards
@@ -18,13 +18,6 @@ export const CardsColumn = ({initialState, columnType}) => {
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
-
-    const changeStatus = (id) => {
-        ApiService.updateStatus(id, columnType)
-            .catch(err => {
-                console.error(err);
-            })
-    }
 
     const [, dropRef] = useDrop({
         accept: "cardItem",
