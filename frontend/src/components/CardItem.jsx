@@ -1,15 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useDrag} from 'react-dnd'
 
-import {UpdateForm} from "./UpdateForm";
 import {useDispatch} from "react-redux";
 import {deleteCard, removeFromColumn} from "../actions/cardsActions";
+import {open} from "../feutures/updateModalFormSlice";
 
 export const CardItem = ({card}) => {
     const dispatch = useDispatch();
-    const [showModal, setShowModal] = useState(false);
-    const openModal = () => setShowModal(true);
-    const closeModal = () => setShowModal(false);
 
     const [{didDrop}, dragRef] = useDrag({
         type: "cardItem",
@@ -27,7 +24,6 @@ export const CardItem = ({card}) => {
     const {title, description} = card;
     return (
         <>
-            <UpdateForm card={card} show={showModal} closeModal={closeModal} />
             <div className="container" ref={dragRef}>
                 <div className="card mb-3 bg-light">
                     <div className="card-header">
@@ -45,7 +41,7 @@ export const CardItem = ({card}) => {
                     </div>
                     <div className="card-body p-3">
                         <p>{description}</p>
-                        <a className="btn btn-outline-primary btn-sm" href="#" onClick={openModal}>View</a>
+                        <a className="btn btn-outline-primary btn-sm" href="#" onClick={() => dispatch(open(card))}>View</a>
                     </div>
                 </div>
             </div>
