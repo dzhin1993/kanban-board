@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDrag} from 'react-dnd'
-
 import {useDispatch} from "react-redux";
+
 import {deleteCard, removeFromColumn} from "../actions/cardsActions";
 import {open} from "../feutures/modalFormSlice";
 

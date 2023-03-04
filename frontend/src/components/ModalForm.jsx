@@ -1,9 +1,9 @@
 import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from "react-bootstrap/Form";
-import {useDispatch, useSelector} from "react-redux";
 import {createCard, updateCard} from "../actions/cardsActions";
 import {close, updateProperty} from "../feutures/modalFormSlice";
 
@@ -34,11 +34,22 @@ export const ModalForm = () => {
                 <Form>
                     <Form.Group className="mb-3" controlId="formTitle">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control name="title" type="text" placeholder="Enter title" value={card.title} onChange={handleChange} />
+                        <Form.Control
+                            name="title" type="text"
+                            placeholder="Enter title"
+                            value={card.title}
+                            onChange={handleChange}
+                        />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formDescription">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control name="description" type="text" placeholder="Enter description" value={card.description} onChange={handleChange} />
+                        <Form.Control
+                            name="description"
+                            type="text"
+                            placeholder="Enter description"
+                            value={card.description}
+                            onChange={handleChange}
+                        />
                     </Form.Group>
                 </Form>
             </Modal.Body>
