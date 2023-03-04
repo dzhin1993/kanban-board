@@ -2,8 +2,8 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const emptyCard = {title: "", description: ""}
 
-export const updateModalFormSlice = createSlice({
-    name: 'updateModal',
+export const modalFormSlice = createSlice({
+    name: 'modal',
     initialState: {
         show: false,
         currentCard: emptyCard,
@@ -23,6 +23,6 @@ export const updateModalFormSlice = createSlice({
 export const {
     open,
     close,
-} = updateModalFormSlice.actions
+} = modalFormSlice.actions
 
-export default updateModalFormSlice.reducer
+export default modalFormSlice.reducer

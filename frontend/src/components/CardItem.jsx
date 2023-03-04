@@ -3,7 +3,7 @@ import {useDrag} from 'react-dnd'
 
 import {useDispatch} from "react-redux";
 import {deleteCard, removeFromColumn} from "../actions/cardsActions";
-import {open} from "../feutures/updateModalFormSlice";
+import {open} from "../feutures/modalFormSlice";
 
 export const CardItem = ({card}) => {
     const dispatch = useDispatch();

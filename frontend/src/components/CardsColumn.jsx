@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {CardItem} from "./CardItem";
 import {CardStatus} from "../models/CardStatus";
 import {updateStatus} from "../actions/cardsActions";
-import {open} from "../feutures/createModalFormSlice";
+import {open} from "../feutures/modalFormSlice";
 
 export const CardsColumn = ({columnType}) => {
     const dispatch = useDispatch();
@@ -25,6 +25,8 @@ export const CardsColumn = ({columnType}) => {
         })
     });
 
+    const empty = {title: "", description: "", status: columnType}
+
     return (
         <>
             <div className="col-12 col-lg-6 col-xl-3" ref={dropRef}>
@@ -35,7 +37,7 @@ export const CardsColumn = ({columnType}) => {
                     </div>
                     <div className="card-body p-3">
                         {cards && cards.map(card => <CardItem key={card.id} card={card} />)}
-                        <a href="#" className="btn btn-primary btn-block" onClick={() => dispatch(open(columnType))}>Add new</a>
+                        <a href="#" className="btn btn-primary btn-block" onClick={() => dispatch(open(empty))}>Add new</a>
                     </div>
                 </div>
             </div>
