@@ -17,6 +17,10 @@ export const modalFormSlice = createSlice({
             state.show = false;
             state.currentCard = emptyCard;
         },
+        changeInput: (state) => {
+            state.show = false;
+            state.currentCard = emptyCard;
+        },
     }
 });
 

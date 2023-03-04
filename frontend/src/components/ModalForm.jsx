@@ -31,15 +31,9 @@ export const ModalForm = () => {
         updateValues({title: card.title, description: card.description})
     }, [card])
 
-    const changeTitle = e => {
-        updateValues({...cardValues, title: e.target.value});
+    const handleChange = e => {
+        updateValues({...cardValues, [e.target.name]: e.target.value});
     }
-
-    const changeDescription = e => {
-        updateValues({...cardValues, description: e.target.value});
-    }
-
-    const handleClick = () => updateChanges(cardValues);
 
     return (
         <Modal show={show} onHide={() => dispatch(close())}>
@@ -50,11 +44,11 @@ export const ModalForm = () => {
                 <Form>
                     <Form.Group className="mb-3" controlId="formTitle">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" placeholder="Enter title" value={cardValues.title} onChange={changeTitle} />
+                        <Form.Control name="title" type="text" placeholder="Enter title" value={cardValues.title} onChange={handleChange} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formDescription">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control type="text" placeholder="Enter description" value={cardValues.description} onChange={changeDescription} />
+                        <Form.Control name="description" type="text" placeholder="Enter description" value={cardValues.description} onChange={handleChange} />
                     </Form.Group>
                 </Form>
             </Modal.Body>
@@ -62,7 +56,7 @@ export const ModalForm = () => {
                 <Button variant="secondary" onClick={() => dispatch(close())}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleClick}>
+                <Button variant="primary" onClick={() => updateChanges(cardValues)}>
                     Save Changes
                 </Button>
             </Modal.Footer>
