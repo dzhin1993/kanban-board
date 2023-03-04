@@ -57,7 +57,7 @@ export const ModalForm = () => {
                 <Button variant="secondary" onClick={() => dispatch(close())}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={() => updateChanges()}>
+                <Button disabled={card.title === ""} variant="primary" onClick={() => updateChanges()}>
                     Save Changes
                 </Button>
             </Modal.Footer>
