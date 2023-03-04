@@ -27,7 +27,6 @@ export const createCard = (created) => async dispatch => {
     try {
         ApiService.create(created)
             .then((response) => {
-                    created.id = response.data.id;
                     dispatch(create(response.data))
                 }
             );

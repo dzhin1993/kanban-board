@@ -1,38 +1,28 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from "react-bootstrap/Form";
 import {useDispatch, useSelector} from "react-redux";
 import {createCard, updateCard} from "../actions/cardsActions";
-import {close} from "../feutures/modalFormSlice";
+import {close, updateProperty} from "../feutures/modalFormSlice";
 
 export const ModalForm = () => {
     const dispatch = useDispatch();
     const show = useSelector(state => state.modal.show);
     const card = useSelector(state => state.modal.currentCard);
 
-    const updateChanges = ({title, description}) => {
-        const updated = {...card, title, description};
-        if (updated?.id) {
-            dispatch(updateCard(updated));
+    const updateChanges = () => {
+        if (card?.id) {
+            dispatch(updateCard(card));
         } else {
-            dispatch(createCard(updated))
+            dispatch(createCard(card));
         }
         dispatch(close());
     }
 
-    const [cardValues, updateValues] = useState({
-        title: card.title,
-        description: card.description,
-    });
-
-    useEffect(() => {
-        updateValues({title: card.title, description: card.description})
-    }, [card])
-
-    const handleChange = e => {
-        updateValues({...cardValues, [e.target.name]: e.target.value});
+    const handleChange = ({target}) => {
+        dispatch(updateProperty({name: target.name, value: target.value}));
     }
 
     return (
@@ -44,11 +34,11 @@ export const ModalForm = () => {
                 <Form>
                     <Form.Group className="mb-3" controlId="formTitle">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control name="title" type="text" placeholder="Enter title" value={cardValues.title} onChange={handleChange} />
+                        <Form.Control name="title" type="text" placeholder="Enter title" value={card.title} onChange={handleChange} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formDescription">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control name="description" type="text" placeholder="Enter description" value={cardValues.description} onChange={handleChange} />
+                        <Form.Control name="description" type="text" placeholder="Enter description" value={card.description} onChange={handleChange} />
                     </Form.Group>
                 </Form>
             </Modal.Body>
@@ -56,7 +46,7 @@ export const ModalForm = () => {
                 <Button variant="secondary" onClick={() => dispatch(close())}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={() => updateChanges(cardValues)}>
+                <Button variant="primary" onClick={() => updateChanges()}>
                     Save Changes
                 </Button>
             </Modal.Footer>

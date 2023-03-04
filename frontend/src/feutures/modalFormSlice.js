@@ -17,9 +17,10 @@ export const modalFormSlice = createSlice({
             state.show = false;
             state.currentCard = emptyCard;
         },
-        changeInput: (state) => {
-            state.show = false;
-            state.currentCard = emptyCard;
+        updateProperty: (state, action) => {
+            const {name, value} = action.payload;
+            const {currentCard} = state;
+            currentCard[name] = value;
         },
     }
 });
@@ -27,6 +28,7 @@ export const modalFormSlice = createSlice({
 export const {
     open,
     close,
+    updateProperty
 } = modalFormSlice.actions
 
 export default modalFormSlice.reducer
