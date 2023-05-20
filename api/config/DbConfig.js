@@ -1,1 +1,1 @@
-export default URL = "mongodb+srv://user:test@cluster0.eb9rwmf.mongodb.net/?retryWrites=true&w=majority";
+export default URL = "mongodb://localhost:27017/todoCards";

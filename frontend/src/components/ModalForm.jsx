@@ -28,7 +28,7 @@ export const ModalForm = () => {
     return (
         <Modal show={show} onHide={() => dispatch(close())}>
             <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>{card?.id ? "Update card" : "Create card"}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
