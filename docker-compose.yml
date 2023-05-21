@@ -1,0 +1,24 @@
+services:
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - db:/data/db
+
+  api:
+    build:
+      context: ./api
+    depends_on:
+      - mongodb
+    ports:
+      - '8080:8080'
+
+  client:
+    build:
+      context: ./frontend
+    ports:
+      - '3000:3000'
+
+volumes:
+  db:

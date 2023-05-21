@@ -1,1 +1,1 @@
-export default URL = "mongodb://localhost:27017/todoCards";
+export default URL = "mongodb://mongodb/todoCards";
