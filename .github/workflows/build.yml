@@ -24,4 +24,4 @@ jobs:
 
       - name: test
         run: |
-          npm run test --prefix frontend
+          npm run test a --prefix frontend
