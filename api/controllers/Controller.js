@@ -1,7 +1,4 @@
-import db from "../models/index.js";
 import Service from "../services/Service.js";
-
-const TodoItem = db.todoItems;
 
 class Controller {
     create = (req, res) => {
