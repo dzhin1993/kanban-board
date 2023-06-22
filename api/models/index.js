@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import URL from '../config/DbConfig.js'
-import Schema from "./Model.js";
+import URL from '../config/dbConfig.js'
+import Schema from "./model.js";
 
 mongoose.Promise = global.Promise;
 

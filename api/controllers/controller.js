@@ -1,4 +1,4 @@
-import Service from "../services/Service.js";
+import Service from "../services/service.js";
 
 class Controller {
     create = (req, res) => {

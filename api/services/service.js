@@ -1,6 +1,6 @@
 import db from "../models/index.js";
-import {groupBy} from "../utils/ReducerUtils.js";
-import HttpError from "../errors/HttpError.js"
+import {groupBy} from "../utils/reducerUtils.js";
+import HttpError from "../errors/httpError.js"
 
 const TodoItem = db.todoItems;
 
