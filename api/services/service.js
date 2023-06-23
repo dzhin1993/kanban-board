@@ -1,4 +1,4 @@
-import db from "../models/index.js";
+import db from "../models/db.js";
 import {groupBy} from "../utils/reducerUtils.js";
 import HttpError from "../errors/httpError.js"
 
