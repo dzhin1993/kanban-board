@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 
 import URL from '../config/dbConfig.js'
-import Schema from "./model.js";
+import Schema from './model.js';
 
 mongoose.Promise = global.Promise;
 
